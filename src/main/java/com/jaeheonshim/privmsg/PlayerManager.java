@@ -4,11 +4,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerManager {
-    private Set<Player> players;
-    private HashMap<Player, Player> senderToReplyRecipient;
+    private Set<Player> players = new HashSet<Player>();
+    private HashMap<Player, Player> senderToReplyRecipient = new HashMap<Player, Player>();
 
     private static PlayerManager instance;
 

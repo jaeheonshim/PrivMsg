@@ -1,0 +1,10 @@
+name: PrivMsg
+main: com.jaeheonshim.privmsg.MessagePlugin
+version: 1.0.0
+commands:
+  msg:
+    description: Send a private message to a player
+    usage: /msg [username] [message]
+  r:
+    description: Reply to a private message
+    usage: /r [message]

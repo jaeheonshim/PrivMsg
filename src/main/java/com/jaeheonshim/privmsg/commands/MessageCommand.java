@@ -8,12 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class MessageCommand implements ServerCommand {
-    public int argumentSize() {
-        return 2;
-    }
+import java.util.StringJoiner;
 
-    public void execute(CommandSender sender, Command command, String label, String[] args) {
+public class MessageCommand {
+    public static void execute(CommandSender sender, Command command, String label, String[] args) {
        if(!(sender instanceof Player)) {
            Bukkit.getLogger().info("This command can only be executed by a player");
            return;
@@ -33,13 +31,14 @@ public class MessageCommand implements ServerCommand {
 
        // set the reply recipient to the player the sender is sending a message to.
        PlayerManager.getInstance().setReplyRecipient(player, recipient);
+       PlayerManager.getInstance().setReplyRecipient(recipient, player);
 
-       StringBuilder message = new StringBuilder();
+       StringJoiner message = new StringJoiner(" ");
        for(int i = 1; i < args.length; i++) {
-          message.append(args[i]);
+          message.add(args[i]);
        }
 
        player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + " me " + ChatColor.GOLD + "-> " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + " ] " + ChatColor.WHITE + message);
-       recipient.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
+       recipient.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
     }
 }
