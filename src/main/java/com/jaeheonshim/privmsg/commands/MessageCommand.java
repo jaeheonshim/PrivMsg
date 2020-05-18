@@ -1,0 +1,45 @@
+package com.jaeheonshim.privmsg.commands;
+
+import com.jaeheonshim.privmsg.PlayerManager;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerMoveEvent;
+
+public class MessageCommand implements ServerCommand {
+    public int argumentSize() {
+        return 2;
+    }
+
+    public void execute(CommandSender sender, Command command, String label, String[] args) {
+       if(!(sender instanceof Player)) {
+           Bukkit.getLogger().info("This command can only be executed by a player");
+           return;
+       }
+
+       Player player = (Player) sender;
+       String recipientUsername = args[0];
+       Player recipient = PlayerManager.getInstance().getPlayerByUsername(recipientUsername);
+
+       if(recipient == null) {
+           player.sendMessage(ChatColor.RED + "A player with that username is not online.");
+           return;
+       } else if(player.equals(recipient)) {
+           player.sendMessage(ChatColor.RED + "You can't send a message to yourself!");
+           return;
+       }
+
+       // set the reply recipient to the player the sender is sending a message to.
+       PlayerManager.getInstance().setReplyRecipient(player, recipient);
+
+       StringBuilder message = new StringBuilder();
+       for(int i = 1; i < args.length; i++) {
+          message.append(args[i]);
+       }
+
+       player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + " me " + ChatColor.GOLD + "-> " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + " ] " + ChatColor.WHITE + message);
+       recipient.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
+    }
+}
