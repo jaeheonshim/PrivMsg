@@ -1,12 +1,11 @@
 package com.jaeheonshim.privmsg.commands;
 
-import com.jaeheonshim.privmsg.PlayerManager;
+import com.jaeheonshim.privmsg.util.PlayerManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerMoveEvent;
 
 import java.util.StringJoiner;
 

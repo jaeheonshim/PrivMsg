@@ -6,10 +6,13 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.DatabaseMetaData;
+
 public class MessagePlugin extends JavaPlugin {
     @Override
     public void onEnable() {
-
+        DatabaseManager.getInstance().initialize(this);
+        DatabaseManager.getInstance().getConnection();
     }
 
     @Override

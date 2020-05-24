@@ -1,4 +1,4 @@
-package com.jaeheonshim.privmsg;
+package com.jaeheonshim.privmsg.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
