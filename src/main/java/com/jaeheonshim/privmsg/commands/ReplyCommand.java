@@ -1,6 +1,7 @@
 package com.jaeheonshim.privmsg.commands;
 
 import com.jaeheonshim.privmsg.PlayerManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -27,6 +28,8 @@ public class ReplyCommand {
         for(int i = 0; i < args.length; i++) {
             messageJoiner.add(args[i]);
         }
+
+        Bukkit.getLogger().info(player.getName() + " -> " + respond.getName() + ": " + messageJoiner);
 
         player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + " me " + ChatColor.GOLD + "-> " + ChatColor.RED + respond.getName() + ChatColor.GOLD + " ] " + ChatColor.WHITE + messageJoiner);
         respond.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + messageJoiner);

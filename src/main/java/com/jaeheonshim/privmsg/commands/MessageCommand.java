@@ -38,7 +38,9 @@ public class MessageCommand {
           message.add(args[i]);
        }
 
-       player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + " me " + ChatColor.GOLD + "-> " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + " ] " + ChatColor.WHITE + message);
-       recipient.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
+       Bukkit.getLogger().info(player.getName() + " -> " + recipient.getName() + ": " + message);
+
+       player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + "me " + ChatColor.GOLD + "-> " + ChatColor.RED + recipient.getName() + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
+       recipient.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me" + ChatColor.GOLD + "] " + ChatColor.WHITE + message);
     }
 }
