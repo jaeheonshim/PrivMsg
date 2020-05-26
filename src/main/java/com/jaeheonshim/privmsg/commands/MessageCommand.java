@@ -21,7 +21,7 @@ public class MessageCommand {
        String recipientUsername = args[0];
        Player recipient = PlayerManager.getInstance().getPlayerByUsername(recipientUsername);
 
-       if(recipient == null) {
+       if(recipient == null || !recipient.isOnline()) {
            player.sendMessage(ChatColor.RED + "A player with that username is not online.");
            return;
        } else if(player.equals(recipient)) {
