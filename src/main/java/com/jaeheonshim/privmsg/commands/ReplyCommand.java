@@ -22,6 +22,9 @@ public class ReplyCommand {
         if(respond == null) {
             player.sendMessage(ChatColor.RED + "You can only reply after you've sent a message or been sent a message.");
             return;
+        } else if(!respond.isOnline()) {
+            player.sendMessage(ChatColor.RED + "That player is currently not online.");
+            return;
         }
 
         StringJoiner messageJoiner = new StringJoiner(" ");
@@ -31,8 +34,8 @@ public class ReplyCommand {
 
         Bukkit.getLogger().info(player.getName() + " -> " + respond.getName() + ": " + messageJoiner);
 
-        player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + " me " + ChatColor.GOLD + "-> " + ChatColor.RED + respond.getName() + ChatColor.GOLD + " ] " + ChatColor.WHITE + messageJoiner);
-        respond.sendMessage(ChatColor.GOLD + "[ " + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me " + ChatColor.GOLD + "] " + ChatColor.WHITE + messageJoiner);
+        player.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + "me " + ChatColor.GOLD + "-> " + ChatColor.RED + respond.getName() + ChatColor.GOLD + "] " + ChatColor.WHITE + messageJoiner);
+        respond.sendMessage(ChatColor.GOLD + "[" + ChatColor.RED + player.getName() + ChatColor.GOLD + " ->" + ChatColor.RED + " me" + ChatColor.GOLD + "] " + ChatColor.WHITE + messageJoiner);
 
     }
 }
